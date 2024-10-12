@@ -1,0 +1,6 @@
+Bài toán đặt ra như sau: Bạn được cho xâu s độ dài n(n≤50,000), bạn cần tìm ra xâu con của s có độ dài lớn nhất, và xâu con này xuất hiện ít nhất k lần.
+
+Bài toán này có thể được giải bằng Suffix Array, tuy nhiên cách cài đặt phức tạp và không phải trọng tâm của bài viết nên tôi sẽ không nêu ra ở đây.
+Tiếp tục bàn đến thuật toán Hash để thay thế thuật toán chuẩn. Nhận xét rằng, giả sử độ dài lớn nhất tìm được là l, thì với mọi l'≤l, luôn tồn tại xâu có độ dài l' xuất hiện ít nhất k lần. Tuy nhiên, với mọi l'>l, không tồn tại xâu có độ dài l' xuất hiện ít nhất k lần (do l đã là lớn nhất). Như vậy, l thỏa mãn tính chất chia nhị phân. Chúng ta có thể áp dụng thuật toán tìm kiếm nhị phân để tìm ra l lớn nhất.
+Bây giờ, với mỗi l khi đang chia nhị phân, chúng ta sẽ phải kiểm tra liệu có tồn tại xâu con nào xuất hiện ít nhất k lần hay không. Điều này được làm rất đơn giản, bằng cách sinh mọi mã Hash của các xâu con độ dài k trong s. Sau đó sắp xếp lại các mã Hash này theo chiều tăng dần, rồi kiếm tra xem có một đoạn liên tiếp các mã Hash nào giống nhau độ dài l hay không.
+Như vậy, độ phức tạp để chia nhị phân là O(log(n)), độ phức tạp của sắp xếp là O(nlog(n)), vậy độ phức tạp của cả bài toán là O(nlog2(n)).
